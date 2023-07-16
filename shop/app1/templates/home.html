@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner_slider %}
+<!--Banner Slider-->
+ <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{%static 'banner/img1.jpg' %}" class="d-block w-100" alt="..."> 
+    </div>
+    <div class="carousel-item">
+      <img src="{%static 'banner/img2.jpg' %}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>
+<!-- End Banner Slider -->
+{% endblock banner_slider %}
+
+<!-- Start main-content -->
+{% block main-content %} 
+<!-- 1st Product Slider -->
+<div class="m-3">
+  <h2 style="text-align: center; color: rgb(115, 100, 87);">Deals of The Day</h2>
+   <!-- Slider 1 -->
+ <div class="owl-carousel" id="slider1">
+  {% for item in products %}
+    <a href="{% url 'product_detail' item.id %}" class="btn">
+        <div class="item">
+          <img src="{{ item.product_image.url }}" alt="" height="200px">
+          <span class="fw-bold">{{ item.title }}</span><br>
+          <span class="fs-5">Rs: {{ item.discounted_price }}/-</span>
+        </div>
+    </a>
+  {% endfor %}
+ </div>
+</div>
+{% endblock main-content %}
+<!--End main content -->
+
+
+
